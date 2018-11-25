@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "NativeQuizApp",
+    "description": "This project is really great.",
+    "slug": "NativeQuizApp",
+    "privacy": "public",
+    "sdkVersion": "31.0.0",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/images/quiz.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#01AAD5"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
