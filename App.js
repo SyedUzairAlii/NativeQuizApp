@@ -1,33 +1,42 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { Constants } from 'expo';
-import { AppLoading, Asset, Font, Icon } from 'expo';
+
+import { StyleSheet, Text, View } from 'react-native';
+import Navigator from "./navigation/AppNavigation" 
+
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // paddingTop : 19,
+  },
+  
   statusBar: {
     backgroundColor: "#0E7BF7",
     height: Constants.statusBarHeight,
   },
-
   // rest of the styles
 });
+
 export default class App extends React.Component {
-  state = {
-    isLoadingComplete: false,
-  };
-
   render() {
-  
-        return (
-          <View style={styles.container}>
-          <View style={styles.statusBar} />
-          {/* {Platform.OS === 'ios' && <StatusBar barStyle="default" />} */}
-          {/* <AppNavigator /> */}
-        </View>
-      );
-    
-  }
+    return (
+      // <View>
+      <View style={styles.container}>
+      <View style={styles.statusBar} />
 
+        <Navigator/>
+      </View>
+     
+
+    );
+  }
 }
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop : 19,
+//   },
+// });
 

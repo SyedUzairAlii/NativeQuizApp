@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native';
+import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
+
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -26,7 +28,7 @@ export default class Dashboard extends React.Component {
         // console.log(data)
         // quizData.push(quizData.results)
         this.setState({ quizData: quizData.results });
-        console.log(this.state.quizData,"yeeeeeeeeeeeeeeeeeeeeeeee")
+        // console.log(this.state.quizData,"yeeeeeeeeeeeeeeeeeeeeeeee")
 
       });
 
@@ -41,6 +43,12 @@ export default class Dashboard extends React.Component {
         
       } 
      }
+     onSelect(index, value){
+       console.log(value,"value of selected items ")
+      // this.setState({
+      //   text: `Selected index: ${index} , value: ${value}`
+      // })
+    }
 
   render() {
     const { quizData, count,quiz } = this.state;
@@ -54,12 +62,25 @@ export default class Dashboard extends React.Component {
                     return (
                       <View>
                         <Text>Q:{item.question}</Text>
-
-                        <Text>1){item.correct_answer}</Text>
-
+                        <RadioGroup
+        onSelect = {(index, value) => this.onSelect(index, value)}
+      >
+       <RadioButton value={item.correct_answer} >
+                        <Text>{item.correct_answer}</Text>
+                        </RadioButton>
+                        </RadioGroup>
                         {
                           item.incorrect_answers.map((item, index) => {
-                            return <Text>{index +2}) {item}</Text>
+                            return <View>
+                              <RadioGroup
+        onSelect = {(index, value) => this.onSelect(index, value)}
+      >
+                              <RadioButton value={item}  selectedIndex={1} >
+                              <Text>{item}</Text>
+                              </RadioButton>
+                        </RadioGroup>
+
+                              </View> 
                           })
                         }
                          <Button
