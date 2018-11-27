@@ -12,6 +12,7 @@ export default class Dashboard extends React.Component {
     super(props);
     this.state = {
       count: 0,
+      resultCount:0,
       quiz: "Quiz startted",
       quizData: [],
       count: 1,
@@ -43,15 +44,31 @@ export default class Dashboard extends React.Component {
         
       } 
      }
+     quizAgain = () => { 
+       const{ quiz,count,resultCount } = this.state
+       this.setState({ quiz : "Quiz startted", count:0,resultCount:0})
+     }
      onSelect(index, value){
-       console.log(value,"value of selected items ")
-      // this.setState({
-      //   text: `Selected index: ${index} , value: ${value}`
-      // })
+       const {quizData,count,resultCount} = this.state
+      quizData.map((item, index) => {
+        if (index === count) {
+          // console.log( item.correct_answer , "corect answer")
+
+          if(value === item.correct_answer){
+            this.setState({resultCount : resultCount + 10 })
+          }
+        }})
+        if(count === 9){
+          this.setState({quiz : "result" })
+        }else{
+          this.setState({ count: count + 1 })
+          
+        } 
+      // if (value === )
     }
 
   render() {
-    const { quizData, count,quiz } = this.state;
+    const { quizData, count,quiz ,resultCount} = this.state;
 
     return (
       <View >
@@ -96,10 +113,21 @@ export default class Dashboard extends React.Component {
                
               }
               {quiz === "result" &&
-<View><Text
+<View>
+  
+              <Text>Your Score IS</Text>
+  <Text
                     style={{ fontSize: 18, marginBottom: 10, color: 'red' }}>
-                    {' '}Flip{' '}
-                  </Text></View>}
+                    
+                    
+                    {resultCount}%
+                  </Text>
+                  <Button
+                onPress={this.quizAgain}
+                title="Start quiz again"
+                color="#841584"
+                accessibilityLabel="Learn more about this purple button"
+              /></View>}
       
       </View>
     );
